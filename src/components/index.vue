@@ -5,7 +5,7 @@
         </router-link>
         <br>
         <router-link :to="{ name: 'bfcandgrail'}">
-            <span>bfc</span>
+            <span class="blue-text">bfc</span>
         </router-link>
         <br>
         <router-link :to="{ name: 'autocursor'}">

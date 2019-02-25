@@ -27,7 +27,7 @@ export default {
     .outer {
         width: 500px;
         height: 500px;
-        background-color: aqua;
+        background-color: @blue;
         display: inline-block;
         border: 1px solid;
 
@@ -35,7 +35,7 @@ export default {
             width: 200px;
             height: 200px;
             display: inline-block;
-            background-color: #fff;
+            background-color: @green ;
         }
     }
 }
