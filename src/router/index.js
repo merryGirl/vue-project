@@ -14,22 +14,22 @@ export default new Router({
 		{
 			path: '/cssflex',
 			name: 'cssflex',
-			component: require('../components/css-practice/flex-layout').default
+			component: require('../components/css_practice/flex_layout').default
 		},
 		{
 			path: '/bfcandgrail',
 			name: 'bfcandgrail',
-			component: require('../components/css-practice/bfc-and-grail').default
+			component: require('../components/css_practice/bfc_and_grail').default
 		},
 		{
 			path: '/autocursor',
 			name: 'autocursor',
-			component: require('../components/js-practice/auto-cursor').default
+			component: require('../components/js_practice/auto_cursor').default
 		},
 		{
 			path: '/bubbling',
 			name: 'bubbling',
-			component: require('../components/js-practice/bubbling').default
+			component: require('../components/js_practice/bubbling').default
 		}
 	]
 })

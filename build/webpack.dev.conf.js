@@ -9,6 +9,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
+const express = require('express')
+const app = express()
+
+const mockData = require('../mock/mock.json') // mock data
+const routes = express.Router()
+app.use('/', routes)
 
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
@@ -42,6 +48,35 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app){
+        app.get('/cartoom', (req, res) => {
+            res.json({
+                "code": 0,
+                "result": mockData.cartoom
+            })
+        })
+        app.get('/userInfo', (req, res) => {
+            res.json({
+                "code": 0,
+                "result": mockData.userInfo
+            })
+        })
+        app.get('/detail', (req, res) => {
+            console.log(req.body);
+            // let id = req.data.id;
+            // let resValue = Object.keys(mockData.cartoom).forEach(key => {
+            //     mockData.cartoom[key].forEach(itemKey => {
+            //         if (itemKey.cartoomId == id) {
+            //             return itemKey;
+            //         }
+            //     })
+            // })
+            res.json({
+                "code": 0,
+                "result": 12
+            })
+        })
     }
   },
   plugins: [
