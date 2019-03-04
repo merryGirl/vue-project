@@ -1,7 +1,15 @@
 # vue-project
 
-> A Vue.js project
+> Vue练手项目（番剧推荐）
 
+## 规划
+
+> 主页左右布局,侧边导航,点击左边对应的导航右边显示对应的页面
+
+### 环境
+
+> vue + element， axios请求的数据通过本地mock json返回
+  
 ## Build Setup
 
 ``` bash

@@ -50,6 +50,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     },
     before(app){
+        // cartoom detail
         app.get('/cartoom', (req, res) => {
             res.json({
                 "code": 0,
@@ -62,19 +63,22 @@ const devWebpackConfig = merge(baseWebpackConfig, {
                 "result": mockData.userInfo
             })
         })
+
+        // 根据id返回对应的番剧详情
         app.get('/detail', (req, res) => {
-            console.log(req.body);
-            // let id = req.data.id;
-            // let resValue = Object.keys(mockData.cartoom).forEach(key => {
-            //     mockData.cartoom[key].forEach(itemKey => {
-            //         if (itemKey.cartoomId == id) {
-            //             return itemKey;
-            //         }
-            //     })
-            // })
+            let id = req.query.id;
+            let resValue = {};
+            Object.keys(mockData.cartoom).forEach(key => {
+                mockData.cartoom[key].forEach(itemKey => {
+                    if (itemKey.cartoomId == id) {
+                        resValue = itemKey;
+                    }
+                })
+            })
+
             res.json({
                 "code": 0,
-                "result": 12
+                "result": resValue
             })
         })
     }

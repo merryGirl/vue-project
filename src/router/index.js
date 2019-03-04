@@ -12,24 +12,9 @@ export default new Router({
 			component: require('../components/index').default
 		},
 		{
-			path: '/cssflex',
-			name: 'cssflex',
-			component: require('../components/css_practice/flex_layout').default
-		},
-		{
-			path: '/bfcandgrail',
-			name: 'bfcandgrail',
-			component: require('../components/css_practice/bfc_and_grail').default
-		},
-		{
-			path: '/autocursor',
-			name: 'autocursor',
-			component: require('../components/js_practice/auto_cursor').default
-		},
-		{
-			path: '/bubbling',
-			name: 'bubbling',
-			component: require('../components/js_practice/bubbling').default
+			path: '/detail',
+			name: 'detail',
+			component: require('../components/cartoom_details/detail').default
 		}
 	]
 })

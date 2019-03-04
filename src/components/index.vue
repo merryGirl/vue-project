@@ -10,7 +10,7 @@
             <el-row>
                 <!-- left nav -->
                 <el-col :span="5">
-                    <el-menu default-active="1" @select="handleSelect">
+                    <el-menu default-active="2" @select="handleSelect">
                         <el-submenu index="1">
                             <template slot="title">
                                 <i class="el-icon-view"></i>
@@ -32,51 +32,72 @@
 
                 <!-- right content -->
                 <el-col :span="19">
-                    <!-- <component v-bind:is="templateShow"></component> -->
-                    <detail-lists></detail-lists>
+                    <component 
+                        :is="templateShow" 
+                        :menuIndex="menuIndex"
+                        :cartoomData="cartoomData">
+                    </component>
                 </el-col>
             </el-row>
         </div>
-
-        <!-- <router-link :to="{ name: 'cssflex'}">
-            <span>flex布局</span>
-        </router-link>
-        <br>
-        <router-link :to="{ name: 'bfcandgrail'}">
-            <span class="blue-text">bfc</span>
-        </router-link>
-        <br>
-        <router-link :to="{ name: 'autocursor'}">
-            <span>光标自动定位到input框结尾</span>
-        </router-link>
-        <br>
-        <router-link :to="{ name: 'bubbling'}">
-            <span>冒泡</span>
-        </router-link> -->
     </div>
 </template>
 
 <script>
 import detailLists from './cartoom_details/detail_Lists.vue';
+import cartoom from './cartoom_details/cartoom.vue';
+import userInfo from './user.vue';
 
 export default {
     components: {
-        detailLists
+        detailLists,
+        userInfo,
+        cartoom
     },
     props: {},
     data() {
-        return {};
+        return {
+            templateShow: '',  //component name
+            menuIndex: '1-1',
+            cartoomData: {}, //main cartoom data 
+        };
     },
-    created() {},
+    created() {
+        this.init();
+    },
     mounted() {},
     watch: {},
     computed: {},
     methods: {
+        init() {
+            this.axios
+                .get('/cartoom')
+                .then(
+                    response => {
+                        const data = response.data;
+
+                        if (data.code == 0) {
+                            this.cartoomData = data.result
+                        } else {
+                            this.$message.error('接口请求错误');
+                        }
+                    },
+                )
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
+        // dynamic components skip
         handleSelect(key) {
-            const contentMap = {
-                "2": "detailLists"
-            }
-            console.log(contentMap.get(key));
+            const contentMap = new Map([
+                ["1-1", "cartoom"],
+                ["1-2", "cartoom"],
+                ["2", "detailLists"],
+                ["3", "userInfo"]
+            ]);
+            this.menuIndex = key;
+            this.templateShow = contentMap.get(key);
         }
     }
 };

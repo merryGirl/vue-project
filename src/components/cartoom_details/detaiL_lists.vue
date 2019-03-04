@@ -21,63 +21,33 @@
 <script>
 export default {
     components: {},
-    props: {},
+    props: {
+        cartoomData: {
+            default: {},
+            type: Object
+        }
+    },
     data() {
-        return {
-            cartoomData: {} //all data
-        };
+        return {};
     },
     filters: {
         country: function(val) {
             return val == 'chineseCartoom' ? '国漫番剧' : '日漫番剧';
         }
     },
-    created() {
-        this.init();
-    },
+    created() {},
     mounted() {},
     watch: {},
     computed: {},
     methods: {
-        // get init data
-        init() {
-            this.axios
-                .get('/cartoom')
-                .then(
-                    response => {
-                        const data = response.data;
-
-                        if (data.code == 0) {
-                            this.cartoomData = data.result
-                        } else {
-                            this.$message.error('接口请求错误');
-                        }
-                    },
-                )
-                .catch(error => {
-                    console.log(error);
-                });
-        },
-
-        skip(id) {
-            // 路由跳转，并且带上id
-            // console.log(id);
-            this.axios({
-                url: '/detail',
-                method: 'get',
-                data: { id: 22 }
-            }).then(
-                    response => {
-                        const data = response.data;
-
-                        if (data.code == 0) {
-                         
-                        }
-                    },
-                )
-                .catch(error => {
-                    console.log(error);
-                });
+        // skip with cartoomId
+        skip(index, data) {
+            router.push({ 
+                path: '/detail',
+                query: {
+                    id: data.cartoomId
+                }    
+            });
         }
     }
 };
