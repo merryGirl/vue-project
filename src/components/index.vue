@@ -57,7 +57,7 @@ export default {
     props: {},
     data() {
         return {
-            templateShow: '',  //component name
+            templateShow: 'detailLists',  //component name
             menuIndex: '1-1',
             cartoomData: {}, //main cartoom data 
         };
