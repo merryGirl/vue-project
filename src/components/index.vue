@@ -31,11 +31,13 @@
 
             <!-- right content -->
             <div class="right-content">
-                <component 
-                    :is="templateShow" 
-                    :menuIndex="menuIndex"
-                    :cartoomData="cartoomData">
-                </component>
+                <div class="content-body">
+                    <component 
+                        :is="templateShow" 
+                        :menuIndex="menuIndex"
+                        :cartoomData="cartoomData">
+                    </component>
+                </div>
             </div>
         </div>
     </div>
@@ -140,17 +142,25 @@ export default {
     }
 
     .content {
+        display: flex;
+
         .left-menu {
+            position: fixed;
             width: 180px;
             height: 100%;
-            position: fixed;
-            left: 0;
-            top: 61px;
+            border-left: 1px solid @grey-light;
         }
 
         .right-content {
+            position: absolute;
             width: calc(100% - 180px);
-            padding-left: 180px;
+            height: calc(100% - 62px);
+            margin-left: 180px;
+
+            .content-body {
+                height: 100%;
+                overflow: auto;
+            }
         }
     }
 }
