@@ -2,7 +2,7 @@
     <div class="list-content">
         <div v-for="(cartoomItem, cartoomForm) in cartoomData" :key="cartoomForm">
             <div class="list-table">
-                <div class="title">{{cartoomForm|country}}</div>
+                <div class="title" :class="[cartoomForm == 'chineseCartoom' ? 'chinese-title' : 'japanese-title']">{{cartoomForm|country}}</div>
 
                 <el-table :data="cartoomItem" style="width: 80%" stripe border>
                     <el-table-column prop="cartoomName" label="番剧名"></el-table-column>
@@ -55,9 +55,17 @@ export default {
 
 <style lang="less" scoped>
 .list-content {
-    .title {
-        height: 80px;
-        line-height: 80px;
+    .list-table {
+        .title {
+            height: 80px;
+            line-height: 80px;
+        }
+        .chinese-title {
+            background-color: blue;
+        }
+        .japanese-title {
+            background-color: red;
+        }
     }
 
 }

@@ -1,11 +1,16 @@
 <template>
     <div class="user-info-content">
+        <img src="../assets/img/head_picture.png" alt="">
+
+        <!-- signature -->
+        <canvas id="signature-pic"></canvas>
+
         <div v-for="(userItem, name) in userInfo" :key="name">
             <label for="">{{name|nameFilters}}:&nbsp;&nbsp;</label>
-            <div class="detail-value">{{userItem}}</div>
+            <span class="detail-value">{{userItem}}</span>
         </div>
     </div>
-</template>
+</template> 
 
 <script>
 export default {
@@ -13,7 +18,7 @@ export default {
     props: {},
     data() {
         return {
-            userInfo: {}
+            userInfo: {},
         };
     },
     filters: {
@@ -42,7 +47,7 @@ export default {
                         const data = response.data;
 
                         if (data.code == 0) {
-                            this.userInfo = data.result
+                            this.userInfo = data.result;
                         } else {
                             this.$message.error('接口请求错误');
                         }
@@ -51,10 +56,21 @@ export default {
                 .catch(error => {
                     console.log(error);
                 });
-        }
+        },
     }
 };
 </script>
 
 <style lang="less" scoped>
+.user-info-content {
+    img {
+        width: 120px;
+    }
+
+    #signature-pic {
+        width: 300px;
+        height: 100px;
+        border: 1px solid @blue;
+    }
+}
 </style>

@@ -3,6 +3,10 @@
         <div class="header"> 
             <div class="header-title">优质漫画推荐</div>
             <div class="user-info">
+                <!-- 后续添加用户登录检测功能 -->
+                <span v-if="isLogin">欢迎回来！</span>
+                <span v-else>更多功能，敬请登录~</span>
+
                 <img src="../assets/img/head_picture.png" alt="">
             </div>
         </div>
@@ -60,6 +64,7 @@ export default {
             templateShow: 'detailLists',  //component name
             menuIndex: '1-1',
             cartoomData: {}, //main cartoom data 
+            isLogin: true,  //Whether the user is logged in
         };
     },
     created() {
